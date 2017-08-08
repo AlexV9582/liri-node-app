@@ -4,10 +4,15 @@ var request   = require("request");
 var twitter   = require("twitter");
 var spotify   = require("node-spotify-api");
 var userInput = process.argv;
-var client    = new twitter(keys);
+var client    = new twitter({
+                            consumer_key: keys.twitterKeys.consumer_key,
+                            consumer_secret: keys.twitterKeys.consumer_secret,
+                            access_token_key: keys.twitterKeys.access_token_key,
+                            access_token_secret: keys.twitterKeys.access_token_secret
+});
 var spotify   = new spotify({
-  id    : "fcf478871a544c62b3fb4f32863a297f",
-  secret: "19e1426d0bc14cc38182354022f85782"
+                            id    : "fcf478871a544c62b3fb4f32863a297f",
+                            secret: "19e1426d0bc14cc38182354022f85782"
 });
 var artistName;
 var songName;
@@ -40,10 +45,14 @@ if (userInput[2] === "my-tweets") {
     var params = {screen_name: 'code_sandbox'};
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
     if (!error) {
-      console.log(tweets);
+      for (var i = 0; i < tweets.length; i++) {
+        console.log(tweets[i].created_at);
+        console.log(tweets[i].text);
+      }
     }
     if (error) {
-      console.log("ERROR" + " " + error)
+      console.log(error[0].code)
+      console.log(error[0].message)
     }
   });
 }
