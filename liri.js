@@ -71,7 +71,7 @@ if (userInput[2] === "movie-this" && userInput == "") {
         console.log("Release Year: " + JSON.parse(body).Actors);
     }  
   }) 
-}else {
+}else if (userInput[2] === "movie-this"){
       movieName = "Mr Nobody";
       var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=40e9cece";
       console.log(queryUrl)
@@ -86,6 +86,16 @@ if (userInput[2] === "movie-this" && userInput == "") {
           console.log("Release Year: " + JSON.parse(body).Plot);
           console.log("Release Year: " + JSON.parse(body).Actors);
   }  
+});
+}
+if (userInput[2] === "do-what-it-says") {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+  if (error) {
+    return console.log(error);
+  }
+  console.log(data);
+  var dataArr = data.split(",");
+  console.log(dataArr);
 });
 }
   
