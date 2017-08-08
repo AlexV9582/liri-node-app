@@ -56,4 +56,36 @@ if (userInput[2] === "my-tweets") {
     }
   });
 }
+if (userInput[2] === "movie-this" && userInput == "") {
+  movieName = userInput.slice(3, 40);
+  var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=40e9cece";
+  request(queryUrl, function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+        console.log("Release Year: " + JSON.parse(body).Year);
+        console.log("Title: " + JSON.parse(body).Title);
+        console.log("IMDB: " + JSON.parse(body).imdbRating);
+        console.log("Rotten Tomatoes: " + JSON.parse(body).Ratings[1].Value);
+        console.log("Release Year: " + JSON.parse(body).Country);
+        console.log("Release Year: " + JSON.parse(body).Language);
+        console.log("Release Year: " + JSON.parse(body).Plot);
+        console.log("Release Year: " + JSON.parse(body).Actors);
+    }  
+  }) 
+}else {
+      movieName = "Mr Nobody";
+      var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=40e9cece";
+      console.log(queryUrl)
+      request(queryUrl, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+          console.log("Release Year: " + JSON.parse(body).Year);
+          console.log("Title: " + JSON.parse(body).Title);
+          console.log("IMDB: " + JSON.parse(body).imdbRating);
+          console.log("Rotten Tomatoes: " + JSON.parse(body).Ratings[1].Value);
+          console.log("Release Year: " + JSON.parse(body).Country);
+          console.log("Release Year: " + JSON.parse(body).Language);
+          console.log("Release Year: " + JSON.parse(body).Plot);
+          console.log("Release Year: " + JSON.parse(body).Actors);
+  }  
+});
+}
   
